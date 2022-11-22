@@ -3,7 +3,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/models/http_exception.dart';
 import 'package:shop_app/provider/auth.dart';
@@ -136,7 +135,7 @@ class _AuthCardState extends State<AuthCard> {
     });
     try {
       if (_authMode == AuthMode.Login) {
-        await Provider.of<Auth>(context, listen: false).logIN(
+        await Provider.of<Auth>(context, listen: false).signIN(
           _authData['email'].toString(),
           _authData['password'].toString(),
         );

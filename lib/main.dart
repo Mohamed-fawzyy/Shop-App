@@ -10,8 +10,10 @@ import 'package:shop_app/screens/auth_screen.dart';
 import 'package:shop_app/screens/edit_product_screen.dart';
 import 'package:shop_app/provider/product_provider.dart';
 import 'package:shop_app/screens/products_screen.dart';
+import 'package:shop_app/screens/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -30,15 +32,21 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProxyProvider<Auth, ProductProvider>(
           update: (context, auth, previousData) => ProductProvider(
             auth.token,
+            auth.userId,
             previousData == null ? [] : previousData.items,
           ),
-          create: (context) => ProductProvider('', []),
+          create: (_) => ProductProvider('', '', []),
         ),
         ChangeNotifierProvider(
           create: (_) => Cart(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => Orders(),
+        ChangeNotifierProxyProvider<Auth, Orders>(
+          update: (context, auth, prevData) => Orders(
+            auth.token,
+            auth.userId,
+            prevData == null ? [] : prevData.orders,
+          ),
+          create: (context) => Orders('', '', []),
         ),
       ],
       child: Consumer<Auth>(
@@ -49,7 +57,15 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple),
             fontFamily: 'Lato',
           ),
-          home: auth.isAuth ? ProductsScreen() : AuthScreen(),
+          home: auth.isAuth
+              ? ProductsScreen()
+              : FutureBuilder(
+                  future: auth.tryAutoLogIn(),
+                  builder: (context, snapshot) =>
+                      snapshot.connectionState == ConnectionState.waiting
+                          ? SplashScreen()
+                          : AuthScreen(),
+                ),
           routes: {
             '/edit-product-screen': (context) => const EditProductScreen(),
           },

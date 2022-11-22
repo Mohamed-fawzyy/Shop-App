@@ -109,7 +109,7 @@ class _OrderButtonState extends State<OrderButton> {
                 widget.cart.clear();
               } catch (er) {
                 Get.snackbar(
-                  'Faild to add at favorites!',
+                  'Faild to make an order!',
                   'Somthing went wrong in the server, will be solved soon.',
                   snackPosition: SnackPosition.BOTTOM,
                   duration: const Duration(seconds: 4),

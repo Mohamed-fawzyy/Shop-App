@@ -10,7 +10,8 @@ import 'product.dart';
 
 class ProductProvider with ChangeNotifier {
   final String? authToken;
-  ProductProvider(this.authToken, this._items);
+  final String? userId;
+  ProductProvider(this.authToken, this.userId, this._items);
 
   List<Product> _items = [
     // Product(
@@ -59,9 +60,11 @@ class ProductProvider with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> fetchAndSetProduct() async {
-    final url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?auth=$authToken',
+  Future<void> fetchAndSetProduct([bool filterByUser = false]) async {
+    final filterString =
+        filterByUser ? 'orderBy="creatorId"&equalTo"$userId"' : '';
+    var url = Uri.parse(
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?$filterString&auth=$authToken',
     );
     try {
       final res = await http.get(url);
@@ -71,6 +74,13 @@ class ProductProvider with ChangeNotifier {
       if (extractedData.isEmpty) {
         return;
       }
+
+      url = Uri.parse(
+        'https://shop-app-a058d-default-rtdb.firebaseio.com/userFavorites/$userId.json?auth=$authToken',
+      );
+      final favResponse = await http.get(url);
+      final favData = json.decode(favResponse.body);
+
       extractedData.forEach(
         (prodId, prodData) {
           loadedProduct.add(
@@ -78,7 +88,8 @@ class ProductProvider with ChangeNotifier {
               id: prodId,
               title: prodData['title'],
               description: prodData['description'],
-              isFavorites: prodData['isFavorites'],
+              // if fav data null make it false bec its a new prod, if prodId is null make fasle
+              isFavorites: favData == null ? false : favData[prodId] ?? false,
               price: prodData['price'],
               imageUrl: prodData['imageUrl'],
             ),
@@ -94,19 +105,19 @@ class ProductProvider with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json',
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?auth=$authToken',
     );
     try {
       final res = await http.post(
         url,
         body: json.encode(
           {
-            // converet from data to json
+            // converet from dart to json
             'title': product.title,
             'price': product.price,
-            'description': product.description,
             'imageUrl': product.imageUrl,
-            'isFavorites': product.isFavorites,
+            'creatorId': userId,
+            'description': product.description,
           },
         ),
       );
@@ -130,7 +141,7 @@ class ProductProvider with ChangeNotifier {
   Future<void> updateProduct(String id, Product newProd) async {
     try {
       final url = Uri.parse(
-        'https://shop-app-a058d-default-rtdb.firebaseio.com/products/$id.json',
+        'https://shop-app-a058d-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken',
       );
       await http.patch(
         url,
@@ -154,7 +165,7 @@ class ProductProvider with ChangeNotifier {
 
   Future<void> deleteProduct(String productId) async {
     final url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/products/$productId.json',
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/products/$productId.json?auth=$authToken',
     );
 
     Product? existedProduct = items.firstWhere((prod) => prod.id == productId);

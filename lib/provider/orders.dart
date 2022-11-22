@@ -18,7 +18,12 @@ class OrderItem {
 }
 
 class Orders with ChangeNotifier {
+  final String? authToken;
+  final String? userId;
   List<OrderItem> _orders = [];
+
+  Orders(this.authToken, this.userId, this._orders);
+
   String _isNull = '';
   List<OrderItem> get orders {
     return [..._orders];
@@ -38,7 +43,7 @@ class Orders with ChangeNotifier {
 
   Future<void> fetchAndSetProduct() async {
     final url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/Orders.json',
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/Orders/$userId.json?auth=$authToken',
     );
     try {
       final res = await http.get(url);
@@ -58,7 +63,7 @@ class Orders with ChangeNotifier {
               id: orderID,
               amount: orderData['amount'],
               dateTime: DateTime.parse(orderData['dateTime']),
-              products: ((orderData['products'] ?? []) as List<dynamic>)
+              products: ((orderData['product'] ?? []) as List<dynamic>)
                   .map(
                     (op) => CartItems(
                       id: op['id'],
@@ -81,7 +86,7 @@ class Orders with ChangeNotifier {
 
   Future<void> addOrder(List<CartItems> cartProducts, double total) async {
     final url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/Orders.json',
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/Orders/$userId.json?auth=$authToken',
     );
     try {
       final timestamp = DateTime.now();
@@ -94,6 +99,7 @@ class Orders with ChangeNotifier {
             'product': cartProducts
                 .map(
                   (cp) => {
+                    'creatorId': userId,
                     'id': cp.id,
                     'title': cp.title,
                     'price': cp.price,

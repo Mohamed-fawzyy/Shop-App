@@ -9,6 +9,8 @@ import 'package:shop_app/provider/product_provider.dart';
 import 'package:shop_app/utils/app_colors.dart';
 import 'package:shop_app/screens/products_details_screen.dart';
 
+import '../provider/auth.dart';
+
 class ProductItem extends StatelessWidget {
   ProductItem({Key? key}) : super(key: key);
 
@@ -16,6 +18,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
+    final authToken = Provider.of<Auth>(context, listen: false);
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Get.height * 0.01),
@@ -43,7 +46,7 @@ class ProductItem extends StatelessWidget {
               builder: (context, product, _) => IconButton(
                 onPressed: () async {
                   try {
-                    await product.favStatus();
+                    await product.favStatus(authToken.token, authToken.userId);
                     await Provider.of<ProductProvider>(
                       context,
                       listen: false,
