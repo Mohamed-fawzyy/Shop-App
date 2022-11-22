@@ -9,6 +9,9 @@ import 'package:shop_app/provider/product.dart';
 import 'product.dart';
 
 class ProductProvider with ChangeNotifier {
+  final String? authToken;
+  ProductProvider(this.authToken, this._items);
+
   List<Product> _items = [
     // Product(
     //   id: 'p1',
@@ -58,7 +61,7 @@ class ProductProvider with ChangeNotifier {
 
   Future<void> fetchAndSetProduct() async {
     final url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json',
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?auth=$authToken',
     );
     try {
       final res = await http.get(url);
