@@ -254,33 +254,37 @@ class _AuthCardState extends State<AuthCard> {
                 if (_isLoading)
                   const CircularProgressIndicator()
                 else
-                  RaisedButton(
+                  ElevatedButton(
                     child: MyText(
                       text: _authMode == AuthMode.Login ? 'LOGIN' : 'SINUP',
                       size: 15,
                       color: Colors.white,
                     ),
                     onPressed: _submit,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                    style: TextButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      onSurface: Theme.of(context).colorScheme.primary,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30.0,
+                        vertical: 8.0,
+                      ),
                     ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30.0,
-                      vertical: 8.0,
-                    ),
-                    color: Theme.of(context).colorScheme.primary,
                   ),
-                FlatButton(
+                TextButton(
                   child: Text(
                     '${_authMode == AuthMode.Login ? 'SIGNUP' : 'LOGIN'} INSTEAD',
                   ),
                   onPressed: _switchAuthMode,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30.0,
-                    vertical: 4,
+                  style: TextButton.styleFrom(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    onSurface: Theme.of(context).colorScheme.primary,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0,
+                      vertical: 4,
+                    ),
                   ),
-                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  textColor: Theme.of(context).colorScheme.primary,
                 ),
               ],
             ),

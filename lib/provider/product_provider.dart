@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:shop_app/provider/product.dart';
 
-import 'product.dart';
+// import 'product.dart';
 
 class ProductProvider with ChangeNotifier {
   final String? authToken;
