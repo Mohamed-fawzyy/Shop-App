@@ -75,7 +75,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
     setState(() {
       _isLoading = true;
     });
-    if (_editProduct.id != '') {
+    if (_editProduct.id != null) {
       // lw mlyan e3ml update
       try {
         await provider.updateProduct(_editProduct.id, _editProduct);

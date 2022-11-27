@@ -61,11 +61,10 @@ class ProductProvider with ChangeNotifier {
   }
 
   Future<void> fetchAndSetProduct([bool filterByUser = false]) async {
-    final filterString = filterByUser
-        ? 'orderBy="creatorId"&equalTo"$userId"'
-        : ''; //not working
+    final filterString =
+        filterByUser ? 'orderBy="creatorId"&equalTo"$userId"' : '';
     var url = Uri.parse(
-      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?$filterString&auth=$authToken',
+      'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?auth=$authToken&$filterString',
     );
     try {
       final res = await http.get(url);
