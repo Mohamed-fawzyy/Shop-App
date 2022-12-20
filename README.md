@@ -1,16 +1,26 @@
 # shop_app
+A new Flutter project📱.
 
-A new Flutter project.
+#### RoadMap 🚸
+---
+* [Introduction](https://github.com/Mohamed-fawzyy/app-features#Introduction "Named link title")
+* [Key Features](https://github.com/Mohamed-fawzyy/app-features#Key-Features "Named link title")
+* [Samples](https://github.com/Mohamed-fawzyy/app-features#Samples "Named link title")
 
-## Getting Started
+#### Introduction
+---
+An e-commerce application that serves all needs to have an account to start your business and grow up. It provided all needed features within clear UI/UX for useability and state management implementation. It is Authenticated with firebase to handle the back-end data for all users.
 
-This project is a starting point for a Flutter application.
+#### Key Features
+---
+-	Built customized widgets to obtain the best UI/UX design 👩‍🎨.
+-	Applied SOLID principles and object-oriented design 📑.
+-	Worked on SQL query performance with Firebase 🗝.
+-	Handled input validation and exceptions⛓.
+-	Enabled logging in with user token Authentication 🪪.
+-	Ability to add, delete, edit, favorites, all products 🛍.
+-	Consideration for placing an order in cart 🛒.
 
-A few resources to get you started if this is your first Flutter project:
+#### Samples
+---
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
