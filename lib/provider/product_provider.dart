@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:ffi';
 
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -48,6 +50,7 @@ class ProductProvider with ChangeNotifier {
       'https://shop-app-a058d-default-rtdb.firebaseio.com/products.json?auth=$authToken',
     );
     try {
+      _items = [];
       final res = await http.get(url);
       Map<String?, dynamic> extractedData = json.decode(res.body);
       final List<Product> loadedProduct = [];
@@ -67,23 +70,24 @@ class ProductProvider with ChangeNotifier {
         final newMap = {parentKey: extractedData[parentKey]};
         extractedData = newMap;
       }
-
       extractedData.forEach(
         (prodId, prodData) {
           loadedProduct.add(
             Product(
-              id: prodId!,
-              title: prodData['title'],
-              description: prodData['description'],
+              id: prodId ?? '', //to avoid any null exception
+              title: prodData?['title'] ?? '',
+              description: prodData?['description'] ?? '',
               // if fav data null make it false bec its a new prod, if prodId is null make fasle
               isFavorites: favData == null ? false : favData[prodId] ?? false,
-              price: prodData['price'],
-              imageUrl: prodData['imageUrl'],
+              price: prodData?['price'] ?? 0.0,
+              imageUrl: prodData?['imageUrl'] ?? '',
             ),
           );
         },
       );
-
+      if (loadedProduct[0].price == 0.0) {
+        loadedProduct.clear();
+      }
       _items = loadedProduct;
       notifyListeners();
     } catch (e) {
