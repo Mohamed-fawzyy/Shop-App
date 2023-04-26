@@ -13,26 +13,70 @@ This is an ecommerce app developed with Flutter, a mobile app development framew
 * Add, delete, and edit products
 * Sort products as favorites
 * Shopping cart management
-* Order history and status tracking
+* Order history
 * Keep the user logged in as long as possible by system preferences<br>
 
+|       Feature                   | 🔰 Status  
+| -------------------------- | :----------------:| 
+| Authentiation            |         ✔️         |    
+| Authorization            |         ✔️         |    
+| User Roles             |         ✔️         |    
+| REST API   |         ✔️         |  
+| Validation    |         ✔️         |  
+
 # Technologies Used 🧑🏽‍💻
-* Flutter SDK _**'3.7.12'**_
+* Flutter SDK `3.7.12`
 * Dart programming language
 * Firebase Authentication
 * Firebase Cloud Firestore
 * Firebase Cloud Functions <br>
 
-# Installation 🛰
-1. Clone the repository
-2. Run _**'flutter pub get'**_ to install the required packages
-3. Set up a Firebase project and add your _**'google-services.json'**_ file to the project. For iOS, add your _**'GoogleService-Info.plist'**_ file to the project.
-4. Add the necessary Firebase plugins to your Flutter project.
- For Android, add _**'firebase_core'**_ and _**'cloud_firestore'**_ to your pubspec.yaml file.
-For iOS, add _**'firebase_core'**_ and _**'cloud_firestore'**_ to your pubspec.yaml file and add the necessary lines of code to your _**'AppDelegate.swift'**_ file.
-5. Set up Firebase Cloud Functions by following the **<u><a href="https://firebase.google.com/docs/functions/get-started" target="_blank">Firebase documentation</a></u>**.
-6. Add your Stripe API keys to the Firebase Cloud Functions code.
-7. Run the app using _**'flutter run'**_ <br>
+# How this project can be of help 🗺
+* Gaining more knowledge in Flutter and Rest API integration
+* HTTP requests
+* JSON serialization
+* Error Handling <br>
+* Clean and Clear design
+* The minimum amount of code, with Provider state management
+
+# What's in the project 📱
+* Provider State management
+* Clean code and avoid Boilerplate code
+* Managing and updating packages
+* Theming
+* Flutter general AppBars
+* Reusable codes for widgets and functions
+
+
+**Requirements 🧩:** <br>
+* Windows application development OR Mac application development  <br>
+* Access to a computer with an internet connection. <br>
+* and you are ready for the journey <br>
+
+# Configuration and Setup 🔒
+
+1. Create a new Flutter project or open an existing one.
+2. Go to the Firebase console and create a new project.
+3. Follow the Firebase instructions to add Firebase to your Flutter app.
+4. Clone the repository
+5. Run `flutter pub get` to install the required packages
+6. Set up a Firebase project and add your `google-services.json` file to the project. For iOS, add your `GoogleService-Info.plist` file to the project.
+7. Add the necessary Firebase plugins to your Flutter project by adding the following dependencies to your `pubspec.yaml` file:
+```bash
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.1
+  google_fonts: ^2.3.1
+  provider: ^6.0.4
+  http: ^0.13.4
+  intl: ^0.17.0
+  shared_preferences:
+```
+8. Add the Firebase configuration files to your project by downloading the `google-services.json` file for Android and the `GoogleService-Info.plist` file for iOS from the Firebase console, and placing them in the `android/app` and `ios/Runner` directories respectively.
+
+10. Set up Firebase Cloud Functions by following the **<u><a href="https://firebase.google.com/docs/functions/get-started" target="_blank">Firebase documentation</a></u>**.
+11. Run the app using `flutter run` <br>
 
 # SnapShots 📸
 Screenshot 1
