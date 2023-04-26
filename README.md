@@ -79,9 +79,24 @@ dependencies:
 11. Run the app using `flutter run` <br>
 
 # SnapShots 📸
-Screenshot 1
-Screenshot 2
-Screenshot 3
+
+
+- #### Sign Up and make products in favorites.
+https://user-images.githubusercontent.com/111665714/234682972-4a763044-df84-43da-8097-4bb0c805370f.mp4
+
+- #### adding product into cart or undo it, place an order and create an new product.
+https://user-images.githubusercontent.com/111665714/234683675-67b05154-9470-4fc1-b9bf-0eaacc27232f.mp4
+
+- #### create a new product and edit it
+https://user-images.githubusercontent.com/111665714/234684947-e942ccf4-b283-45de-aa31-9595337c7d88.mp4
+
+- #### close the app and auto login then try to logout and login again  
+https://user-images.githubusercontent.com/111665714/234687845-738cfa52-27d2-4ac0-9ac2-0b42c4593d00.mp4
+
+- #### Screen Shots of the firebase auth and real time database
+![Screen Shot 2023-04-26 at 19 51 02 PM](https://user-images.githubusercontent.com/111665714/234685770-b7d46782-a9b6-43d6-8e71-a1dee0ac3833.png)
+![Screen Shot 2023-04-26 at 19 50 42 PM](https://user-images.githubusercontent.com/111665714/234685781-f587b322-cb0d-4055-a4c2-1c865c43ac40.png)
+![Screen Shot 2023-04-26 at 19 51 15 PM](https://user-images.githubusercontent.com/111665714/234685785-f47518a4-be35-4173-91d1-a551f138a81c.png)
 
 # Contributing 📝
 Contributions are welcome! Please open an issue or pull request for any changes or improvements.
