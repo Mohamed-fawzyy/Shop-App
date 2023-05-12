@@ -1,5 +1,5 @@
 # Ecommerce App with Flutter and Firebase 🛍
-This is an ecommerce app developed with Flutter, a mobile app development framework created by Google. The app uses Firebase as a backend with RESTful APIs. <br>
+This is an ecommerce app developed with Flutter by Provider State management, a mobile app development framework created by Google. The app uses Firebase as a backend with RESTful APIs. <br>
 
 # Reach/Follow me on 📫
 <p align="left">
